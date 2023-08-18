@@ -14,6 +14,8 @@
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "msnodesqlv8": "^4.1.0",
-    "prebuild-install": "^7.1.1"
+    "node-gyp": "^9.4.0",
+    "prebuild-install": "^7.1.1",
+    "rebuild": "^0.1.2"
   }
 }
