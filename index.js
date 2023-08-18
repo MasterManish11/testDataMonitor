@@ -21,18 +21,24 @@ app.use(cors({
 
 // GET Request 
 
-app.get("/productiondetail",(req,res)=>{
-const query = "SELECT * FROM dbo.realtimedata";
+// app.get("/productiondetail",(req,res)=>{
+// const query = "SELECT * FROM dbo.realtimedata";
 
-sql.query(connectionString, query, (err, rows) => {
-    if(err){
-        console.log(err)
-    }else{
-        // console.log(rows);
-        res.send(rows)
-    }
+// sql.query(connectionString, query, (err, rows) => {
+//     if(err){
+//         console.log(err)
+//     }else{
+//         // console.log(rows);
+//         res.send(rows)
+//     }
     
-});
+// });
+
+// })
+
+app.get("/",(req,res)=>{
+
+res.send("app is running")
 
 })
 
