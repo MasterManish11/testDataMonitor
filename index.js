@@ -9,6 +9,8 @@ const connectionString = `Driver={${process.env.DB_DRIVER}};Server=${process.env
 Database=${process.env.DB_DATABASE};Uid=${process.env.DB_UID};Pwd=${process.env.DB_PASSWORD};Encrypt=yes;
 TrustServerCertificate=no;Connection Timeout=30;`
 
+
+
 // console.log("connectionString",connectionString)
 
 app.use(bodyParser.json())
