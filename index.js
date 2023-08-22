@@ -67,8 +67,11 @@ const config = {
 //   })
 //   .catch(err => console.log("failed  connect", err)); 
 
-app.get("/",(req,res)=>{
- 
+app.get("/production",(req,res)=>{
+    
+    res.json({
+        "name":"manish"
+    })
         
     connectAndQuery();
     
@@ -84,10 +87,7 @@ async function connectAndQuery() {
             JOIN [SalesLT].[Product] p ON pc.productcategoryid = p.productcategoryid`);
             
             console.log(`${resultSet.recordset.length} rows returned.`);
-            res.json(resultSet)
-            res.json({
-                "name":"manish"
-            })
+            // res.json(resultSet)
             // output column headers
             var columns = "";
             for (var column in resultSet.recordset.columns) {
