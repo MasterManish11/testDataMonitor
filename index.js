@@ -84,7 +84,10 @@ async function connectAndQuery() {
             JOIN [SalesLT].[Product] p ON pc.productcategoryid = p.productcategoryid`);
             
             console.log(`${resultSet.recordset.length} rows returned.`);
-            res.send(resultSet)
+            res.json(resultSet)
+            res.json({
+                "name":"manish"
+            })
             // output column headers
             var columns = "";
             for (var column in resultSet.recordset.columns) {
