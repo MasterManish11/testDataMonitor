@@ -73,7 +73,7 @@ app.get("/production",(req,res)=>{
         "name":"manish"
     })
         
-    connectAndQuery();
+    
     
 async function connectAndQuery() {
     try {
@@ -87,7 +87,7 @@ async function connectAndQuery() {
             JOIN [SalesLT].[Product] p ON pc.productcategoryid = p.productcategoryid`);
             
             console.log(`${resultSet.recordset.length} rows returned.`);
-            // res.json(resultSet)
+            res.json(resultSet)
             // output column headers
             var columns = "";
             for (var column in resultSet.recordset.columns) {
@@ -107,6 +107,7 @@ async function connectAndQuery() {
         }
     }
     
+    connectAndQuery();
 });
     
 
