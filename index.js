@@ -67,9 +67,11 @@ const config = {
 //   })
 //   .catch(err => console.log("failed  connect", err)); 
 
-
-connectAndQuery();
-
+app.get("/",(req,res)=>{
+ 
+        
+    connectAndQuery();
+    
 async function connectAndQuery() {
     try {
         // const pool = new sql.ConnectionPool(config);
@@ -77,32 +79,33 @@ async function connectAndQuery() {
         // const poolConnect = pool.connect();
         console.log("Reading rows from the Table...");
         var resultSet = await poolConnection.request().query(`SELECT TOP 20 pc.Name as CategoryName,
-            p.name as ProductName 
-            FROM [SalesLT].[ProductCategory] pc
+        p.name as ProductName 
+        FROM [SalesLT].[ProductCategory] pc
             JOIN [SalesLT].[Product] p ON pc.productcategoryid = p.productcategoryid`);
-
-        console.log(`${resultSet.recordset.length} rows returned.`);
-
-        // output column headers
-        var columns = "";
-        for (var column in resultSet.recordset.columns) {
-            columns += column + ", ";
+            
+            console.log(`${resultSet.recordset.length} rows returned.`);
+            res.send(resultSet.recordset)
+            // output column headers
+            var columns = "";
+            for (var column in resultSet.recordset.columns) {
+                columns += column + ", ";
+            }
+            console.log("%s\t", columns.substring(0, columns.length - 2));
+            
+            // ouput row contents from default record set
+            resultSet.recordset.forEach(row => {
+                console.log("%s\t%s", row.CategoryName, row.ProductName);
+            });
+            
+            // close connection only when we're certain application is finished
+            poolConnection.close();
+        } catch (err) {
+            console.error(err.message);
         }
-        console.log("%s\t", columns.substring(0, columns.length - 2));
-
-        // ouput row contents from default record set
-        resultSet.recordset.forEach(row => {
-            console.log("%s\t%s", row.CategoryName, row.ProductName);
-        });
-
-        // close connection only when we're certain application is finished
-        poolConnection.close();
-    } catch (err) {
-        console.error(err.message);
     }
-}
-
-
+    
+});
+    
 
 
 
