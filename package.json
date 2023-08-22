@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
+    "dev" : "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "manish",
@@ -19,6 +20,7 @@
     "node-gyp": "^9.4.0",
     "prebuild-install": "^7.1.1",
     "rebuild": "^0.1.2",
+    "request": "^2.88.2",
     "uninstall": "^0.0.0"
   }
 }
