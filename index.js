@@ -69,36 +69,68 @@ const config = {
 
 app.get("/production",(req,res)=>{
     
+    
+    (async function () {
+        try {
+          console.log("sql connecting......")
+          let pool = await sql.connect(config)
+          let result = await pool.request()
+            .query('SELECT * FROM dbo.realtimedata')  // subject is my database table name
+      
+          console.log(result )
+      
+        } catch (err) {
+          console.log(err);
+        }
+      })()
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     // res.json({
     //     "name":"manish"
     // })
-        
-    sql.connect(config, function (err) {
+    
+    // sql.connect(config, function (err) {
 
-        if (err) console.log(err);
+        // if (err) console.log(err);
     
         // create Request object
-        var request = new sql.Request();
+        // var request = new sql.Request();
     
         // query to the database and get the records
-        request.query('SELECT * FROM dbo.realtimedata', function (err, recordset) {
+        // request.query('SELECT * FROM dbo.realtimedata', function (err, recordset) {
     
-            if (err) console.log(err)
+            // if (err) console.log(err)
     
             // send records as a response
-            res.json(recordset);
+            // res.json(recordset);
     
-        });
-    });
-
-
-
-
-
-
-
-
-   
+        // });
+    // });
     
 // async function connectAndQuery() {
     // try {
