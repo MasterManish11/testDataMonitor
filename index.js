@@ -1,20 +1,15 @@
 require('dotenv').config()
-const sql = require("mssql");
 const express =require("express")
 const bodyParser = require("body-parser")
 const app = express();
 const cors = require("cors")
 const port = process.env.PORT || 3000
+const production = require("./routes/production.js")
 app.use(bodyParser.json())
 
 app.use(cors({
     origin: "*"
 }))
-
-const connectionString = `Server=${process.env.DB_SERVER},${process.env.DB_PORT};
-Database=${process.env.DB_DATABASE};Uid=${process.env.DB_UID};Pwd=${process.env.DB_PASSWORD};Encrypt=yes;
-TrustServerCertificate=no;Connection Timeout=30;`
-
 
 // GET Request 
 
@@ -36,22 +31,10 @@ TrustServerCertificate=no;Connection Timeout=30;`
 //     },
 //   };
 
-app.get("/production",(req,res)=>{
-    (async function(){
-        try {
-            console.log("inside loop")
-            // make sure that any items are correctly URL encoded in the connection string
-            await sql.connect(connectionString)
-            const result = await sql.query`SELECT * FROM dbo.realtimedata`
-            res.json(result.recordsets[0])
-        } catch (err) {
-            // ... error checks
-            console.log(err)
-
-        }
-    })()
-
+app.get("/",(req,res)=>{
+    res.json("app is working")
 });
+app.get("/production",production)
     
 
 app.listen(port, ()=> 
